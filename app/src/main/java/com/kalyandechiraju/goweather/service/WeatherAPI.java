@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 
 public interface WeatherAPI {
 
-    @GET("/forecast.json?key=" + Constants.API_KEY + "&days=" + Constants.FORECAST_DAYS)
+    @GET("forecast.json?key=" + Constants.API_KEY + "&days=" + Constants.FORECAST_DAYS)
     Call<Weather> getWeatherForecast(@Query("q") String city);
 
 }

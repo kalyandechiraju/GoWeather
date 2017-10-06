@@ -5,7 +5,7 @@ package com.kalyandechiraju.goweather;
  */
 
 public class Constants {
-    public static final String BASE_URL = "http://api.apixu.com/v1";
+    public static final String BASE_URL = "http://api.apixu.com/v1/";
     public static final String CITY = "Bangalore";
     public static final String FORECAST_DAYS = "5";
 
