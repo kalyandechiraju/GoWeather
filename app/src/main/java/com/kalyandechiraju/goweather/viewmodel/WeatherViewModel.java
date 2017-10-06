@@ -1,8 +1,10 @@
 package com.kalyandechiraju.goweather.viewmodel;
 
 import android.content.Context;
+import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.util.Log;
+import android.view.View;
 
 import com.kalyandechiraju.goweather.Constants;
 import com.kalyandechiraju.goweather.GoWeather;
@@ -25,6 +27,7 @@ public class WeatherViewModel extends BaseViewModel {
     WeatherAPI weatherAPI;
 
     private ObservableField<Weather> weatherData = new ObservableField<>();
+    private ObservableField<Boolean> isDataLoaded = new ObservableField<>(false);
 
     public WeatherViewModel(Context context) {
         ((GoWeather) context).getNetworkComponent().inject(this);
@@ -35,16 +38,35 @@ public class WeatherViewModel extends BaseViewModel {
             @Override
             public void onResponse(Call<Weather> call, Response<Weather> response) {
                 if (response.isSuccessful()) {
+                    weatherData.set(response.body());
                     Log.d(TAG, response.body().getCurrent().getTempC().toString());
                 } else {
                     Log.e(TAG, "Error");
                 }
+                isDataLoaded.set(true);
             }
 
             @Override
             public void onFailure(Call<Weather> call, Throwable t) {
+                isDataLoaded.set(true);
                 Log.e(TAG, "Error", t);
             }
         });
+    }
+
+    public ObservableField<Weather> getWeatherData() {
+        return weatherData;
+    }
+
+    public ObservableField<Boolean> getIsDataLoaded() {
+        return isDataLoaded;
+    }
+
+    @BindingAdapter({"bind:visible"})
+    public static void setVisible(View view, boolean visible) {
+        if (!visible) {
+            view.clearAnimation();
+        }
+        view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 }
