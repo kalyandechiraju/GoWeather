@@ -8,4 +8,5 @@
     <color name="forecast_list_item_text_color">#2A2A2A</color>
     <color name="location_text_color">#556799</color>
     <color name="error_button_color">#4A4A4A</color>
+    <color name="error_layout_background_color">#E85959</color>
 </resources>

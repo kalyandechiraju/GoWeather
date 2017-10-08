@@ -13,7 +13,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#E85959"
+        android:background="@color/error_layout_background_color"
         android:visibility="@{weatherViewModel.didErrorOccur ? View.VISIBLE : View.GONE}">
 
 
@@ -29,17 +29,17 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="start"
-                android:padding="32dp"
-                android:text="Something went wrong at our end!"
-                android:textColor="#FFFFFF"
-                android:textSize="54sp" />
+                android:padding="@dimen/error_message_padding"
+                android:text="@string/error_message"
+                android:textColor="@android:color/white"
+                android:textSize="@dimen/error_message_text_size" />
 
             <android.support.v7.widget.AppCompatButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="44dp"
+                android:layout_marginTop="@dimen/retry_button_top_margin"
                 android:onClick="@{() -> weatherViewModel.retryDownload()}"
-                android:text="RETRY"
+                android:text="@string/retry_button_text"
                 android:theme="@style/RetryButtonStyle" />
 
         </LinearLayout>

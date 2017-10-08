@@ -16,4 +16,8 @@
     <dimen name="list_item_top_margin">24dp</dimen>
     <dimen name="list_item_day_text_size">16sp</dimen>
     <dimen name="list_item_temperature_text_size">16sp</dimen>
+
+    <dimen name="error_message_text_size">54sp</dimen>
+    <dimen name="error_message_padding">32dp</dimen>
+    <dimen name="retry_button_top_margin">44dp</dimen>
 </resources>
