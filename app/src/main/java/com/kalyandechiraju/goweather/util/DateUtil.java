@@ -14,6 +14,7 @@ public class DateUtil {
 
     public static Date parseDate(String dateInString) throws ParseException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.ENGLISH);
+        dateFormat.setLenient(false);
         return dateFormat.parse(dateInString);
     }
 }
