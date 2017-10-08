@@ -23,21 +23,25 @@
             android:id="@+id/list_item_day"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginBottom="@dimen/list_item_bottom_margin"
+            android:layout_marginTop="@dimen/list_item_top_margin"
             android:layout_weight="1"
+            android:fontFamily="sans-serif"
             android:text="@{day}"
-            android:textSize="16sp"
+            android:textColor="@color/forecast_list_item_text_color"
+            android:textSize="@dimen/list_item_day_text_size"
             tools:text="Tuesday" />
 
         <TextView
             android:id="@+id/list_item_temperature"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="32dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginBottom="@dimen/list_item_bottom_margin"
+            android:layout_marginTop="@dimen/list_item_top_margin"
+            android:fontFamily="sans-serif"
             android:text="@{temperature}"
-            android:textSize="16sp"
+            android:textColor="@color/forecast_list_item_text_color"
+            android:textSize="@dimen/list_item_temperature_text_size"
             tools:text="24C" />
 
     </LinearLayout>

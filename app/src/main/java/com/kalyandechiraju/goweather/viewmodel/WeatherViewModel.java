@@ -6,10 +6,12 @@ import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 
 import com.kalyandechiraju.goweather.Constants;
 import com.kalyandechiraju.goweather.GoWeather;
+import com.kalyandechiraju.goweather.R;
 import com.kalyandechiraju.goweather.adapter.ForecastAdapter;
 import com.kalyandechiraju.goweather.model.Forecastday;
 import com.kalyandechiraju.goweather.model.Weather;
@@ -33,10 +35,12 @@ public class WeatherViewModel extends BaseViewModel {
     @Inject
     WeatherAPI weatherAPI;
 
+    private Context mContext;
     private ObservableField<Weather> weatherData = new ObservableField<>();
     private ObservableField<Boolean> isDataLoaded = new ObservableField<>(false);
 
     public WeatherViewModel(Context context) {
+        mContext = context;
         ((GoWeather) context).getNetworkComponent().inject(this);
     }
 
@@ -74,6 +78,9 @@ public class WeatherViewModel extends BaseViewModel {
     public static void setVisible(View view, boolean visible) {
         if (!visible) {
             view.clearAnimation();
+        }
+        if (view.getId() == R.id.forecast_layout && visible) {
+            view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.slide_in));
         }
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }

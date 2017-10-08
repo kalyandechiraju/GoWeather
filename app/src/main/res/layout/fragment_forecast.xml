@@ -11,16 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@android:color/white"
-        android:elevation="16dp">
+        android:elevation="@dimen/forecast_list_elevation">
 
         <ListView
             android:id="@+id/forecast_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginEnd="@dimen/forecast_list_margin"
+            android:layout_marginLeft="@dimen/forecast_list_margin"
+            android:layout_marginRight="@dimen/forecast_list_margin"
+            android:layout_marginStart="@dimen/forecast_list_margin"
+            android:scrollbars="none"
             app:items="@{data.getForecast().getForecastday()}" />
 
     </FrameLayout>

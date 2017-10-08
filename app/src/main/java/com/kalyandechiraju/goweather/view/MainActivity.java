@@ -3,6 +3,7 @@ package com.kalyandechiraju.goweather.view;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
 
         ImageView imageView = (ImageView) findViewById(R.id.loading_image);
         imageView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate));
+
+        View forecastLayout = findViewById(R.id.forecast_layout);
+        forecastLayout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in));
 
         weatherViewModel.downloadWeatherData();
     }

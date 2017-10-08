@@ -20,8 +20,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="88dp"
-            android:layout_marginTop="56dp"
+            android:layout_marginBottom="@dimen/current_temperature_bottom_margin"
+            android:layout_marginTop="@dimen/current_temperature_top_margin"
             android:background="@color/mainBackgroundColor"
             android:orientation="vertical">
 
@@ -30,20 +30,22 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:fontFamily="sans-serif-black"
+                android:textColor="@color/current_temperature_text_color"
                 android:gravity="center"
                 android:text='@{String.format(Locale.ENGLISH, "%.0f" + ((char)0x00B0) ,weather.current.tempC)}'
-                android:textSize="96sp"
+                android:textSize="@dimen/current_temperature_text_size"
                 tools:text="26" />
 
             <TextView
                 android:id="@+id/location_textview"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/location_top_margin"
                 android:fontFamily="sans-serif-thin"
                 android:gravity="center"
+                android:textColor="@color/location_text_color"
                 android:text="@{weather.location.name}"
-                android:textSize="36sp"
+                android:textSize="@dimen/location_text_size"
                 tools:text="Bangalore" />
 
         </LinearLayout>

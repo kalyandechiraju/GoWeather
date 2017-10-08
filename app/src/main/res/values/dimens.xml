@@ -1,4 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="text_margin">16dp</dimen>
+
+    <dimen name="forecast_list_elevation">16dp</dimen>
+    <dimen name="forecast_list_margin">16dp</dimen>
+
+    <dimen name="location_top_margin">16dp</dimen>
+    <dimen name="location_text_size">36sp</dimen>
+
+    <dimen name="current_temperature_text_size">96sp</dimen>
+    <dimen name="current_temperature_bottom_margin">88dp</dimen>
+    <dimen name="current_temperature_top_margin">56dp</dimen>
+
+    <dimen name="list_item_bottom_margin">32dp</dimen>
+    <dimen name="list_item_top_margin">24dp</dimen>
+    <dimen name="list_item_day_text_size">16sp</dimen>
+    <dimen name="list_item_temperature_text_size">16sp</dimen>
 </resources>
