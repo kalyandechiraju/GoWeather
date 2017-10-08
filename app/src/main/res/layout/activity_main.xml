@@ -17,12 +17,17 @@
         android:layout_height="match_parent"
         tools:context="com.kalyandechiraju.goweather.view.MainActivity">
 
+        <include
+            android:id="@+id/err_layout"
+            layout="@layout/error_layout"
+            app:didErrorOccur="@{weatherViewModel.didErrorOccur.get()}" />
+
         <ImageView
             android:id="@+id/loading_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:contentDescription="loading..."
+            android:contentDescription="@string/loading"
             android:src="@drawable/ic_loading"
             app:visible="@{!weatherViewModel.isDataLoaded}"
             tools:visibility="gone" />
@@ -31,22 +36,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/mainBackgroundColor"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:visibility="@{(weatherViewModel.isDataLoaded &amp;&amp; !weatherViewModel.didErrorOccur) ? View.VISIBLE : View.GONE}">
 
             <include
                 android:id="@+id/temperature_layout"
                 layout="@layout/fragment_temperature"
-                android:visibility="@{weatherViewModel.isDataLoaded ? View.VISIBLE : View.GONE}"
                 app:weather="@{weatherViewModel.weatherData.get()}" />
 
             <include
                 android:id="@+id/forecast_layout"
                 layout="@layout/fragment_forecast"
-                android:visibility="@{weatherViewModel.isDataLoaded ? View.VISIBLE : View.GONE}"
                 app:data="@{weatherViewModel.weatherData.get()}" />
 
         </LinearLayout>
-
 
     </RelativeLayout>
 </layout>

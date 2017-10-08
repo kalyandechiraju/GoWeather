@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="RetryButtonStyle" parent="Widget.AppCompat.Button.Colored">
+        <item name="android:colorButtonNormal">@color/error_button_color</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
 </resources>
