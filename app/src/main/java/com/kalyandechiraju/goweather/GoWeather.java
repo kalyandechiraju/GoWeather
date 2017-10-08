@@ -21,11 +21,18 @@ public class GoWeather extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        networkComponent = DaggerNetworkComponent.builder().networkModule(new NetworkModule()).build();
-        appComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .viewModelModule(new ViewModelModule())
-                .build();
+        if (networkComponent == null) {
+            networkComponent = DaggerNetworkComponent.builder()
+                    .networkModule(new NetworkModule())
+                    .build();
+        }
+
+        if (appComponent == null) {
+            appComponent = DaggerAppComponent.builder()
+                    .appModule(new AppModule(this))
+                    .viewModelModule(new ViewModelModule())
+                    .build();
+        }
     }
 
     public NetworkComponent getNetworkComponent() {
@@ -34,5 +41,16 @@ public class GoWeather extends Application {
 
     public AppComponent getAppComponent() {
         return appComponent;
+    }
+
+
+    // For Injecting Test Components
+    public void setNetworkComponent(NetworkComponent networkComponent) {
+        this.networkComponent = networkComponent;
+    }
+
+    // For Injecting Test Components
+    public void setAppComponent(AppComponent appComponent) {
+        this.appComponent = appComponent;
     }
 }

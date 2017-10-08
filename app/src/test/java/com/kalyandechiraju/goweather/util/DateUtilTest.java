@@ -1,6 +1,8 @@
 package com.kalyandechiraju.goweather.util;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.JUnit4;
 
 import java.text.ParseException;
 import java.util.Calendar;
@@ -13,9 +15,10 @@ import static org.junit.Assert.fail;
 /**
  * Created by kalyandechiraju on 08/10/17.
  */
+@RunWith(JUnit4.class)
 public class DateUtilTest {
     @Test
-    public void parseDate() throws Exception {
+    public void shouldParseDate() throws Exception {
         Date date = DateUtil.parseDate("2017-10-8");
         assertNotNull(date);
     }
