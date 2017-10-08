@@ -6,15 +6,15 @@
         <import type="android.view.View" />
 
         <variable
-            name="didErrorOccur"
-            type="boolean" />
+            name="weatherViewModel"
+            type="com.kalyandechiraju.goweather.viewmodel.WeatherViewModel"/>
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#E85959"
-        android:visibility="@{didErrorOccur ? View.VISIBLE : View.GONE}">
+        android:visibility="@{weatherViewModel.didErrorOccur ? View.VISIBLE : View.GONE}">
 
 
         <LinearLayout
@@ -38,6 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="44dp"
+                android:onClick="@{() -> weatherViewModel.retryDownload()}"
                 android:text="RETRY"
                 android:theme="@style/RetryButtonStyle" />
 

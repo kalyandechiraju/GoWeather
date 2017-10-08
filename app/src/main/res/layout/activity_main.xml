@@ -17,10 +17,6 @@
         android:layout_height="match_parent"
         tools:context="com.kalyandechiraju.goweather.view.MainActivity">
 
-        <include
-            android:id="@+id/err_layout"
-            layout="@layout/error_layout"
-            app:didErrorOccur="@{weatherViewModel.didErrorOccur.get()}" />
 
         <ImageView
             android:id="@+id/loading_image"
@@ -29,8 +25,12 @@
             android:layout_centerInParent="true"
             android:contentDescription="@string/loading"
             android:src="@drawable/ic_loading"
-            app:visible="@{!weatherViewModel.isDataLoaded}"
             tools:visibility="gone" />
+
+        <include
+            android:id="@+id/err_layout"
+            layout="@layout/error_layout"
+            app:weatherViewModel="@{weatherViewModel}" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -5,7 +5,6 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.View;
 import android.widget.ListView;
 
 import com.kalyandechiraju.goweather.Constants;
@@ -63,6 +62,12 @@ public class WeatherViewModel extends BaseViewModel {
         });
     }
 
+    public void retryDownload() {
+        didErrorOccur.set(false);
+        isDataLoaded.set(false);
+        downloadWeatherData();
+    }
+
     public ObservableField<Weather> getWeatherData() {
         return weatherData;
     }
@@ -73,17 +78,6 @@ public class WeatherViewModel extends BaseViewModel {
 
     public ObservableField<Boolean> getDidErrorOccur() {
         return didErrorOccur;
-    }
-
-    @BindingAdapter({"bind:visible"})
-    public static void setVisible(View view, boolean visible) {
-        if (!visible) {
-            view.clearAnimation();
-        }
-        /*if (view.getId() == R.id.forecast_layout && visible) {
-            view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.slide_in));
-        }*/
-        view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
     @BindingAdapter({"bing:items"})
