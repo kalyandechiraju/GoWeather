@@ -3,13 +3,19 @@ package com.kalyandechiraju.goweather.viewmodel;
 import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
+import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 
 import com.kalyandechiraju.goweather.Constants;
 import com.kalyandechiraju.goweather.GoWeather;
+import com.kalyandechiraju.goweather.adapter.ForecastAdapter;
+import com.kalyandechiraju.goweather.model.Forecastday;
 import com.kalyandechiraju.goweather.model.Weather;
 import com.kalyandechiraju.goweather.service.WeatherAPI;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -23,6 +29,7 @@ import retrofit2.Response;
 
 public class WeatherViewModel extends BaseViewModel {
     private static final String TAG = WeatherViewModel.class.getName();
+
     @Inject
     WeatherAPI weatherAPI;
 
@@ -36,9 +43,10 @@ public class WeatherViewModel extends BaseViewModel {
     public void downloadWeatherData() {
         weatherAPI.getWeatherForecast(Constants.CITY).enqueue(new Callback<Weather>() {
             @Override
-            public void onResponse(Call<Weather> call, Response<Weather> response) {
+            public void onResponse(@NonNull Call<Weather> call, @NonNull Response<Weather> response) {
                 if (response.isSuccessful()) {
                     weatherData.set(response.body());
+                    //weatherData.get().getForecast().getForecastday()
                     Log.d(TAG, response.body().getCurrent().getTempC().toString());
                 } else {
                     Log.e(TAG, "Error");
@@ -47,7 +55,7 @@ public class WeatherViewModel extends BaseViewModel {
             }
 
             @Override
-            public void onFailure(Call<Weather> call, Throwable t) {
+            public void onFailure(@NonNull Call<Weather> call, @NonNull Throwable t) {
                 isDataLoaded.set(true);
                 Log.e(TAG, "Error", t);
             }
@@ -68,5 +76,15 @@ public class WeatherViewModel extends BaseViewModel {
             view.clearAnimation();
         }
         view.setVisibility(visible ? View.VISIBLE : View.GONE);
+    }
+
+    @BindingAdapter({"bing:items"})
+    public static void bindListItems(ListView listView, List<Forecastday> forecast) {
+        if (forecast != null) {
+            // Remove current day's forecast
+            forecast.remove(0);
+        }
+        ForecastAdapter adapter = new ForecastAdapter(forecast);
+        listView.setAdapter(adapter);
     }
 }

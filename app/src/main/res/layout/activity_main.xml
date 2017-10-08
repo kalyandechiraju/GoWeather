@@ -15,7 +15,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/mainBackgroundColor"
         tools:context="com.kalyandechiraju.goweather.view.MainActivity">
 
         <ImageView
@@ -23,9 +22,31 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:contentDescription="loading..."
             android:src="@drawable/ic_loading"
-            app:visible="@{!weatherViewModel.isDataLoaded}" />
-            <!--android:visibility="@{weatherViewModel.isDataLoaded ? View.INVISIBLE : View.VISIBLE}" />-->
+            app:visible="@{!weatherViewModel.isDataLoaded}"
+            tools:visibility="gone" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mainBackgroundColor"
+            android:orientation="vertical">
+
+            <include
+                android:id="@+id/temperature_layout"
+                layout="@layout/fragment_temperature"
+                android:visibility="@{weatherViewModel.isDataLoaded ? View.VISIBLE : View.GONE}"
+                app:weather="@{weatherViewModel.weatherData.get()}" />
+
+            <include
+                android:id="@+id/forecast_layout"
+                layout="@layout/fragment_forecast"
+                android:visibility="@{weatherViewModel.isDataLoaded ? View.VISIBLE : View.GONE}"
+                app:data="@{weatherViewModel.weatherData.get()}" />
+
+        </LinearLayout>
+
 
     </RelativeLayout>
 </layout>
