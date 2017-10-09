@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="weatherViewModel"
+            type="com.kalyandechiraju.goweather.viewmodel.WeatherViewModel" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.kalyandechiraju.goweather.view.MainActivity">
+
+
+        <ImageView
+            android:id="@+id/loading_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/loading"
+            android:src="@drawable/ic_loading"
+            app:visible="@{!weatherViewModel.isDataLoaded}"
+            tools:visibility="gone" />
+
+        <include
+            android:id="@+id/err_layout"
+            layout="@layout/error_layout"
+            app:weatherViewModel="@{weatherViewModel}" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/mainBackgroundColor"
+            android:orientation="horizontal"
+            android:visibility="@{(weatherViewModel.isDataLoaded &amp;&amp; !weatherViewModel.didErrorOccur) ? View.VISIBLE : View.GONE}">
+
+            <include
+                android:id="@+id/temperature_layout"
+                layout="@layout/fragment_temperature"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:weather="@{weatherViewModel.weatherData.get()}" />
+
+            <include
+                android:id="@+id/forecast_layout"
+                layout="@layout/fragment_forecast"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                app:data="@{weatherViewModel.weatherData.get()}" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>
