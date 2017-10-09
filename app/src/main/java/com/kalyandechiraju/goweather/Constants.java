@@ -5,7 +5,8 @@ package com.kalyandechiraju.goweather;
  */
 
 public class Constants {
-    public static final String BASE_URL = "http://api.apixu.com/v1/";
+    // Not a constant to override during testing
+    public static String BASE_URL = "http://api.apixu.com/v1/";
     public static final String CITY = "Bangalore";
     public static final String FORECAST_DAYS = "5";
 

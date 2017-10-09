@@ -5,10 +5,13 @@ import android.databinding.BindingAdapter;
 import android.databinding.ObservableField;
 import android.support.annotation.NonNull;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 
 import com.kalyandechiraju.goweather.Constants;
 import com.kalyandechiraju.goweather.GoWeather;
+import com.kalyandechiraju.goweather.R;
 import com.kalyandechiraju.goweather.adapter.ForecastAdapter;
 import com.kalyandechiraju.goweather.model.Forecastday;
 import com.kalyandechiraju.goweather.model.Weather;
@@ -80,6 +83,10 @@ public class WeatherViewModel extends BaseViewModel {
         return didErrorOccur;
     }
 
+    public void setWeatherData(ObservableField<Weather> weatherData) {
+        this.weatherData = weatherData;
+    }
+
     @BindingAdapter({"bing:items"})
     public static void bindListItems(ListView listView, List<Forecastday> forecast) {
         if (forecast != null) {
@@ -88,5 +95,16 @@ public class WeatherViewModel extends BaseViewModel {
         }
         ForecastAdapter adapter = new ForecastAdapter(forecast);
         listView.setAdapter(adapter);
+    }
+
+    @BindingAdapter({"bind:visible"})
+    public static void setVisible(View view, boolean visible) {
+        if (!visible) {
+            view.clearAnimation();
+        }
+        if (view.getId() == R.id.loading_image && visible) {
+            view.startAnimation(AnimationUtils.loadAnimation(view.getContext(), R.anim.rotate));
+        }
+        view.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 }

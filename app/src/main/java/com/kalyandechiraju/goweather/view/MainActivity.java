@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.animation.AnimationUtils;
-import android.widget.ImageView;
 
 import com.kalyandechiraju.goweather.GoWeather;
 import com.kalyandechiraju.goweather.R;
@@ -28,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setWeatherViewModel(weatherViewModel);
 
-        ImageView imageView = (ImageView) findViewById(R.id.loading_image);
-        imageView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate));
+//        ImageView imageView = (ImageView) findViewById(R.id.loading_image);
+//        imageView.startAnimation(AnimationUtils.loadAnimation(this, R.anim.rotate));
 
         View forecastLayout = findViewById(R.id.forecast_layout);
         forecastLayout.startAnimation(AnimationUtils.loadAnimation(this, R.anim.slide_in));
