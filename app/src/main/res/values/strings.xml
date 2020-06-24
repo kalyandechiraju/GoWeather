@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GoWeather</string>
+    <string name="app_name" translatable="false">GoWeather</string>
     <string name="loading">loading_image_content_description</string>
     <string name="error_message">Something went wrong at our end!</string>
     <string name="retry_button_text">RETRY</string>
